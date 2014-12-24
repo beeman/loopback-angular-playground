@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm-2">
+    <ul class="nav nav-pills nav-stacked">
+      <li ng-repeat="sub in submenus" ui-sref="{{sub.sref}}" ui-sref-active="active" ng-show="currentUser || sub.public"><a href="">{{sub.name}}</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-10">
+    <main ui-view></main>
+  </div>
+</div>
+

@@ -1,0 +1,14 @@
+<section>
+  <article ng-repeat="r in notes.slice().reverse()">
+    <div class="pull-right" ng-show="currentUser">
+      <button class="btn btn-default" ui-sref="edit-note({ id: r.id })">Edit</button>
+      <button class="btn btn-danger" ui-sref="delete-note({ id: r.id })">Delete</button>
+    </div>
+    <header>
+      <h3>{{r.title}} &middot; {{r.owner.email}}
+        <small>{{r.created | date}}</small>
+      </h3>
+    </header>
+    <p>{{r.body}}</p>
+  </article>
+</section>

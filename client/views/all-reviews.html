@@ -1,0 +1,10 @@
+<section>
+  <article ng-repeat="r in reviews.slice().reverse()">
+    <header>
+      <h3>{{r.coffeeShop.name}} &middot; {{r.reviewer.email}}
+        <small>{{r.created | date}}</small>
+      </h3>
+    </header>
+    <p>{{r.rating}}&#9733; - {{r.comments}}</p>
+  </article>
+</section>

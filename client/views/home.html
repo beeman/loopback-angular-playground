@@ -1,0 +1,15 @@
+<div class="jumbotron">
+  <div>
+    <h2>
+      Welcome!
+      <small ng-hide="currentUser" class="pull-right">
+        <a ui-sref="sign-up" ui-sref-active="active">Sign up</a>
+        or <a ui-sref="login" ui-sref-active="active">Sign in</a>
+      </small>
+      <small ng-show="currentUser" class="pull-right">
+        {{currentUser.email}}
+      </small>
+    </h2>
+  </div>
+</div>
+

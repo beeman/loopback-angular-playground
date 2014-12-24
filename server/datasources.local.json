@@ -1,0 +1,10 @@
+{
+  "mysqlDs": {
+    "name": "mysqlDs",
+    "connector": "memory"
+  },
+  "mongoDs": {
+    "name": "mongoDs",
+    "connector": "memory"
+  }
+}

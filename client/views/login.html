@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <form class="form-signin" role="form" name="form" ng-submit="login()">
+      <h2 class="form-signin-heading">Sign in</h2>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" ng-model="user.email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <p class="hint" ng-show="form.email.$error.required && submitted">Email is required</p>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" ng-model="user.password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <p class="hint" ng-show="form.password.$error.required && submitted"> Password is required</p>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+  </div>
+</div>
