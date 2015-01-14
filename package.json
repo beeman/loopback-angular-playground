@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "main": "server/server.js",
   "scripts": {
-    "pretest": "jshint ."
+    "pretest": "jshint .",
+    "start": "node server/server.js",
+    "services": "lb-ng server/server.js client/js/services/lb-services.js"
   },
   "dependencies": {
     "async": "^0.9.0",
