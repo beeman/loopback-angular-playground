@@ -1,10 +1,19 @@
-<section>
-  <article ng-repeat="r in notes.slice().reverse()">
-    <header>
-      <h3>{{r.title}} &middot; {{r.owner.email}}
-        <small>{{r.created | date}}</small>
-      </h3>
-    </header>
-    <p>{{r.body}}</p>
-  </article>
-</section>
+<table class="table table-bordered table-striped">
+  <tr>
+    <td>Title</td>
+    <td class="col-sm-1">Created</td>
+    <td class="col-sm-1">Owner</td>
+    <td ng-show="currentUser" class="col-sm-1">&nbsp;</td>
+  </tr>
+  <tr ng-repeat="note in notes">
+    <td><a href="" ui-sref="notes.view({id: note.id})">{{note.title}}</a></td>
+    <td class="text-nowrap">{{note.created | date}}</td>
+    <td class="text-nowrap">{{note.owner.username}}</td>
+    <td ng-show="currentUser" class="text-nowrap">
+      <div class="btn-group" ng-show="currentUser.id == note.owner.id">
+        <button class="btn btn-xs btn-default" ui-sref="notes.edit({ id: note.id })">Edit</button>
+        <button class="btn btn-xs btn-danger" ui-sref="notes.delete({ id: note.id })">Delete</button>
+      </div>
+    </td>
+  </tr>
+</table>

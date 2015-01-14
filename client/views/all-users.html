@@ -1,0 +1,23 @@
+<h1 ng-show="loading">Loading</h1>
+
+<table ng-hide="loading" class="table table-bordered table-striped">
+  <tr>
+    <td>Username</td>
+    <td ng-show="currentUser" class="col-sm-1">&nbsp;</td>
+  </tr>
+  <tr ng-repeat="user in users">
+    <td>
+      <a href="" ui-sref="users.view({id: user.id})">{{user.username}}</a>
+      <span class="text-muted">{{user.email}}</span>
+      <span class="pull-right"><span ng-repeat="role in user.roles" class="label label-default">{{role.name}}</span></span>
+    </td>
+    <td ng-show="currentUser" class="text-nowrap">
+      <div class="btn-group">
+        <button class="btn btn-xs btn-default" ui-sref="users.edit({ id: user.id })">Edit</button>
+        <button class="btn btn-xs btn-default" ui-sref="users.password({ id: user.id })">Password</button>
+        <button class="btn btn-xs btn-danger" ui-sref="users.delete({ id: user.id })">Delete</button>
+      </div>
+    </td>
+  </tr>
+</table>
+

@@ -1,7 +1,8 @@
 app = angular.module('app', [
   'ui.router',
   'lbServices',
-  'lbModels'
+  'lbModels',
+  'ngRoute'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -55,31 +56,77 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
       controller: 'DeleteReviewController',
       authenticate: true
     })
-    .state('add-note', {
-      url: '/add-note',
+    .state('users', {
+      abstract: true,
+      url: '/users',
+      templateUrl: 'views/elements/main.html',
+      controller: 'UsersController'
+    })
+    .state('users.list', {
+      url: '',
+      templateUrl: 'views/all-users.html',
+      controller: 'AllUsersController'
+    })
+    .state('users.add', {
+      url: '/add',
+      templateUrl: 'views/user-form.html',
+      controller: 'AddUserController',
+      authenticate: true
+    })
+    .state('users.edit', {
+      url: '/edit/:id',
+      templateUrl: 'views/user-form.html',
+      controller: 'EditUserController',
+      authenticate: true
+    })
+    .state('users.view', {
+      url: '/view/:id',
+      templateUrl: 'views/view-user.html',
+      controller: 'ViewUserController',
+      authenticate: false
+    })
+    .state('users.delete', {
+      url: '/delete/:id',
+      controller: 'DeleteUserController',
+      authenticate: true
+    })
+    .state('notes', {
+      abstract: true,
+      url: '/notes',
+      templateUrl: 'views/elements/main.html',
+      controller: 'NotesController'
+    })
+    .state('notes.list', {
+      url: '',
+      templateUrl: 'views/all-notes.html',
+      controller: 'AllNotesController'
+    })
+    .state('notes.add', {
+      url: '/add',
       templateUrl: 'views/note-form.html',
       controller: 'AddNoteController',
       authenticate: true
     })
-    .state('all-notes', {
-      url: '/all-notes',
-      templateUrl: 'views/all-notes.html',
-      controller: 'AllNotesController'
-    })
-    .state('edit-note', {
-      url: '/edit-note/:id',
+    .state('notes.edit', {
+      url: '/edit/:id',
       templateUrl: 'views/note-form.html',
       controller: 'EditNoteController',
       authenticate: true
     })
-    .state('delete-note', {
-      url: '/delete-note/:id',
+    .state('notes.view', {
+      url: '/view/:id',
+      templateUrl: 'views/view-note.html',
+      controller: 'ViewNoteController',
+      authenticate: false
+    })
+    .state('notes.delete', {
+      url: '/delete/:id',
       controller: 'DeleteNoteController',
       authenticate: true
     })
     .state('forbidden', {
       url: '/forbidden',
-      templateUrl: 'views/forbidden.html',
+      templateUrl: 'views/forbidden.html'
     })
     .state('login', {
       url: '/login',
@@ -90,16 +137,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
       url: '/logout',
       controller: 'AuthLogoutController'
     })
-    .state('my-notes', {
-      url: '/my-notes',
-      templateUrl: 'views/my-notes.html',
-      controller: 'MyNotesController',
-      authenticate: true
-    })
     .state('sign-up', {
       url: '/sign-up',
       templateUrl: 'views/sign-up-form.html',
-      controller: 'SignUpController',
+      controller: 'SignUpController'
     })
     .state('sign-up-success', {
       url: '/sign-up/success',
@@ -115,5 +156,46 @@ app.run(['$rootScope', '$state', function ($rootScope, $state) {
       event.preventDefault(); //prevent current page from loading
       $state.go('forbidden');
     }
+  });
+}]);
+
+app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
+  // Intercept 401 responses and redirect to login screen
+  $httpProvider.interceptors.push(function ($q, $location) {
+    return {
+      responseError: function (rejection) {
+
+        console.log(rejection);
+        alert(rejection.status + ' ' + rejection.statusText + "\n" + rejection.data.error.message);
+
+        //if (rejection.status === 401) {
+        //  AppAuth.currentUser = null;
+        //  // save the current location so that login can redirect back
+        //  $location.nextAfterLogin = $location.path();
+        //
+        //  if ($location.path() === '/router' || $location.path() === '/login') {
+        //    console.log('401 while on router on login path');
+        //  } else {
+        //    if ($location.path() !== '/register') {
+        //      $location.path('/login');
+        //    }
+        //    toasty.pop.warning({title: 'Error 401 received', msg: 'We received a 401 error from the API! Redirecting to login', sound: false});
+        //  }
+        //}
+        //if (rejection.status === 404) {
+        //  console.log(rejection);
+        //  toasty.pop.error({title: 'Error 404 received', msg: rejection.data.error.message, sound: false});
+        //}
+        //if (rejection.status === 422) {
+        //  console.log(rejection);
+        //  toasty.pop.error({title: 'Error 422 received', msg: rejection.data.error.message, sound: false});
+        //}
+        //if (rejection.status === 0) {
+        //  $location.path('/');
+        //  toasty.pop.error({title: 'Connection Refused', msg: 'The connection to the API is refused. Please verify that the API is running!', sound: false});
+        //}
+        return $q.reject(rejection);
+      }
+    };
   });
 }]);

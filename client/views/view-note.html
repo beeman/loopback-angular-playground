@@ -1,0 +1,26 @@
+<div ng-hide="note.id">
+  <h2>Loading...</h2>
+
+</div>
+
+
+<div ng-show="note.id">
+
+  <h2>{{note.title}}
+    <small>{{note.created | date}}</small>
+
+    <div class="btn-group pull-right" ng-show="currentUser.id == note.owner.id">
+      <button class="btn btn-xs btn-default" ui-sref="notes.edit({ id: note.id })">Edit</button>
+      <button class="btn btn-xs btn-danger" ui-sref="notes.delete({ id: note.id })">Delete</button>
+    </div>
+    <button class="btn btn-xs btn-default" ui-sref="notes.edit({ id: note.id })">Edit</button>
+
+  </h2>
+
+  <p>{{note.body}}</p>
+
+  <h3>Raw</h3>
+  <pre>{{note|json}}</pre>
+
+</div>
+

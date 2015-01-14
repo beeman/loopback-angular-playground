@@ -3,8 +3,8 @@ app = angular.module('app');
 app.controller('AuthLoginController', ['$scope', 'AuthService', '$state', function($scope, AuthService, $state) {
 
   $scope.user = {
-    email: 'foo@bar.com',
-    password: 'foobar'
+    email: 'admin@admin.com',
+    password: 'admin'
   };
 
   $scope.login = function() {

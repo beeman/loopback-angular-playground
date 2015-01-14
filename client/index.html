@@ -13,60 +13,65 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container-fluid">
-    <nav class="navbar navbar-inverse" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="" ui-sref="home">Playground</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="" ui-sref="home">Home</a></li>
-            <li><a href="" ui-sref="reviews.list" ui-sref-active="active">Reviews</a></li>
-            <li><a href="" ui-sref="sandbox.index" ui-sref-active="active">Sandbox</a></li>
-            <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notes <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a ui-sref="all-notes" ui-sref-active="active">All Notes</a></li>
-                <li ng-show="currentUser"><a ui-sref="my-notes" ui-sref-active="active">My Notes</a></li>
-                <li ng-show="currentUser"><a ui-sref="add-note" ui-sref-active="active">Add Note</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li ng-show="currentUser">
-              <a ui-sref="logout" ui-sref-active="active">Log out {{currentUser.email}}</a>
-            </li>
-            <li ng-hide="currentUser">
-              <a ui-sref="sign-up" ui-sref-active="active">Sign up</a>
-            </li>
-            <li ng-hide="currentUser">
-              <a ui-sref="login" ui-sref-active="active">Sign in</a>
-            </li>
-          </ul>
-        </div>
+<div class="container-fluid">
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="" ui-sref="home">Playground</a>
       </div>
-    </nav>
-    <main ui-view></main>
-  </div>
-  <script src="vendor/jquery.min.js"></script>
-  <script src="vendor/bootstrap.min.js"></script>
-  <script src="vendor/angular.js"></script>
-  <script src="vendor/angular-resource.js"></script>
-  <script src="vendor/angular-ui-router.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services/lb-services.js"></script>
-  <script src="js/services/lb-models.js"></script>
-  <script src="js/controllers/auth.js"></script>
-  <script src="js/controllers/review.js"></script>
-  <script src="js/controllers/note.js"></script>
-  <script src="js/controllers/sandbox.js"></script>
-  <script src="js/services/auth.js"></script>
-  </body>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="" ui-sref="home">Home</a></li>
+          <li><a href="" ui-sref="reviews.list" ui-sref-active="active">Reviews</a></li>
+          <li><a href="" ui-sref="notes.list" ui-sref-active="active">Notes</a></li>
+          <li ng-show="currentUser">
+            <a href="" ui-sref="users.list" ui-sref-active="active">Users</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+          <li ng-if="currentUser" class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Logged in as {{currentUser.username}} <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a ui-sref="logout" ui-sref-active="active">Log out</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation" class="dropdown-header">Roles:</li>
+              <li role="presentation" class="disabled" ng-repeat="role in currentUser.roles"><a>{{role.name}}</a></li>
+            </ul>
+          </li>
+          <li ng-hide="currentUser">
+            <a ui-sref="sign-up" ui-sref-active="active">Sign up</a>
+          </li>
+          <li ng-hide="currentUser">
+            <a ui-sref="login" ui-sref-active="active">Sign in</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main ui-view></main>
+</div>
+<script src="vendor/jquery.min.js"></script>
+<script src="vendor/bootstrap.min.js"></script>
+<script src="vendor/angular.js"></script>
+<script src="vendor/angular-resource.js"></script>
+<script src="vendor/angular-ui-router.js"></script>
+<script src="vendor/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services/lb-services.js"></script>
+<script src="js/services/lb-models.js"></script>
+<script src="js/controllers/auth.js"></script>
+<script src="js/controllers/user.js"></script>
+<script src="js/controllers/review.js"></script>
+<script src="js/controllers/note.js"></script>
+<script src="js/controllers/sandbox.js"></script>
+<script src="js/services/auth.js"></script>
+</body>
 </html>
