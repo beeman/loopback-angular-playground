@@ -20,7 +20,7 @@
   "relations": {
     "owner": {
       "type": "belongsTo",
-      "model": "Reviewer",
+      "model": "user",
       "foreignKey": "ownerId"
     }
   },

@@ -23,7 +23,7 @@
     },
     "reviewer": {
       "type": "belongsTo",
-      "model": "Reviewer",
+      "model": "user",
       "foreignKey": "publisherId"
     }
   },

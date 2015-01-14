@@ -21,18 +21,14 @@
   },
   "RoleMapping": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "Role": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "CoffeeShop": {
     "dataSource": "mongoDs",
-    "public": true
-  },
-  "Reviewer": {
-    "dataSource": "mysqlDs",
     "public": true
   },
   "Review": {
@@ -40,6 +36,10 @@
     "public": true
   },
   "Note": {
+    "dataSource": "mongoDs",
+    "public": true
+  },
+  "user": {
     "dataSource": "mongoDs",
     "public": true
   }
