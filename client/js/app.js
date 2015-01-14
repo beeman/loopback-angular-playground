@@ -30,24 +30,24 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
     })
     .state('reviews.list', {
       url: '',
-      templateUrl: 'views/all-reviews.html',
+      templateUrl: 'views/reviews/list.html',
       controller: 'AllReviewsController'
     })
     .state('reviews.mine', {
       url: '/mine',
-      templateUrl: 'views/my-reviews.html',
+      templateUrl: 'views/reviews/mine.html',
       controller: 'MyReviewsController',
       authenticate: true
     })
     .state('reviews.add', {
       url: '/add',
-      templateUrl: 'views/review-form.html',
+      templateUrl: 'views/reviews/form.html',
       controller: 'AddReviewController',
       authenticate: true
     })
     .state('reviews.edit', {
       url: '/edit/:id',
-      templateUrl: 'views/review-form.html',
+      templateUrl: 'views/reviews/form.html',
       controller: 'EditReviewController',
       authenticate: true
     })
@@ -64,24 +64,24 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
     })
     .state('users.list', {
       url: '',
-      templateUrl: 'views/all-users.html',
+      templateUrl: 'views/users/list.html',
       controller: 'AllUsersController'
     })
     .state('users.add', {
       url: '/add',
-      templateUrl: 'views/user-form.html',
+      templateUrl: 'views/users/form.html',
       controller: 'AddUserController',
       authenticate: true
     })
     .state('users.edit', {
       url: '/edit/:id',
-      templateUrl: 'views/user-form.html',
+      templateUrl: 'views/users/form.html',
       controller: 'EditUserController',
       authenticate: true
     })
     .state('users.view', {
       url: '/view/:id',
-      templateUrl: 'views/view-user.html',
+      templateUrl: 'views/users/view.html',
       controller: 'ViewUserController',
       authenticate: false
     })
@@ -98,24 +98,24 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
     })
     .state('notes.list', {
       url: '',
-      templateUrl: 'views/all-notes.html',
+      templateUrl: 'views/notes/list.html',
       controller: 'AllNotesController'
     })
     .state('notes.add', {
       url: '/add',
-      templateUrl: 'views/note-form.html',
+      templateUrl: 'views/notes/form.html',
       controller: 'AddNoteController',
       authenticate: true
     })
     .state('notes.edit', {
       url: '/edit/:id',
-      templateUrl: 'views/note-form.html',
+      templateUrl: 'views/notes/form.html',
       controller: 'EditNoteController',
       authenticate: true
     })
     .state('notes.view', {
       url: '/view/:id',
-      templateUrl: 'views/view-note.html',
+      templateUrl: 'views/notes/view.html',
       controller: 'ViewNoteController',
       authenticate: false
     })
@@ -126,11 +126,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
     })
     .state('forbidden', {
       url: '/forbidden',
-      templateUrl: 'views/forbidden.html'
+      templateUrl: 'views/users/forbidden.html'
     })
     .state('login', {
       url: '/login',
-      templateUrl: 'views/login.html',
+      templateUrl: 'views/users/login.html',
       controller: 'AuthLoginController'
     })
     .state('logout', {
@@ -139,12 +139,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
     })
     .state('sign-up', {
       url: '/sign-up',
-      templateUrl: 'views/sign-up-form.html',
+      templateUrl: 'views/users/sign-up-form.html',
       controller: 'SignUpController'
     })
     .state('sign-up-success', {
       url: '/sign-up/success',
-      templateUrl: 'views/sign-up-success.html'
+      templateUrl: 'views/users/sign-up-success.html'
     });
   $urlRouterProvider.otherwise('home');
 }]);
